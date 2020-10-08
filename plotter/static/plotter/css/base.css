@@ -1,0 +1,80 @@
+body {
+  color: rgba(255,255,255,0.87);
+  background-color: #212121;
+  margin:0;
+  padding:0;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", ##COPYRIGHTED CHANGE BEFORE USE
+  Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+@font-face {
+  font-family: 'Trajan Pro Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Trajan Pro Regular'), url('TrajanPro-Regular.woff') format('woff');
+}
+
+h1{
+  margin: 2rem 0;
+}
+
+body .container {
+  margin-bottom: 50px;
+  max-width:1920px;
+}
+
+textarea{
+  color: rgba(255,255,255,0.87);
+}
+
+.btn-alt {
+  background-color: transparent !important;
+  color: #46dbac !important;
+  border: 1px solid #46dbac !important;
+  border-radius: 8px !important;
+  /* color: rgba(255,255,255,0.87) !important; */
+}
+
+.btn-alt:hover{
+  background-color: rgba(0,0,0,0.1) !important;
+}
+
+.blue-hover:hover{
+  color: #46dbac;
+}
+
+.row{
+  border-radius: 5px;
+}
+
+.l-elevation{
+  background-color: #272727;
+}
+
+.m-elevation{
+  background-color: rgba(44,44,44);
+}
+
+.high {
+  color: rgba(255,255,255,0.87);
+}
+
+.feed-header{
+  color: rgba(255,255,255,0.6);
+  width:100%;
+  margin-left:auto;
+  margin-right:auto;
+  border-bottom: 1px solid #46dbac;
+}
+/*
+.medium {
+  color: rgba(255,255,255,0.6);
+} */
+
+.disabled{
+  color: rgba(255,255,255,0.38);
+}
+
+.errorlist{
+  color: #ef5350;
+}

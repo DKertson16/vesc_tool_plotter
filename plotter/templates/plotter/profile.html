@@ -1,0 +1,207 @@
+{% extends "./base.html" %}
+{% block title %}Profile{% endblock title %}
+{% block head_css %}
+  <link rel="stylesheet" href="../../static/plotter/css/profile.css">
+{% endblock head_css %}
+{% block content %}
+  <div class="section feed-header"><h2 class="left-align">{{ username }}'s Profile</h2></div>
+  <div class="container profile">
+    <div class="prof-container">
+      <div class="prof-info l-elevation z-depth-2">
+        <div class="prof-header">
+          <h6> {{ username }}'s Profile</h6>
+        </div>
+        <ul>
+          <li>Builds: {{builds.count}}</li>
+          <li>Rides: {{rides.count}}</li>
+        </ul>
+        {% if user.is_authenticated %}
+          <a href="/logout" class="btn btn-alt">logout</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="build-feed">
+      <div class="feed-body">
+        {% for build in builds %}
+        <div id="{{build.title}}" class="build-container scrollspy">
+          <div class="build-header">
+            <h2>{{build.title}}</h2>
+          </div>
+          <div class="build m-elevation z-depth-3">
+            <div class="build-tile">
+              <div class="build-title">
+                {% if username == user.get_username %}
+                  <div class="build-title-header">
+                    <h6>{{build.title}}</h6>
+                    <a href="/build/{{build.id}}/edit" class="btn edit"><i class="material-icons small">edit</i></a>
+                    <a href="/build/{{build.id}}/delete" class="btn"><i class="material-icons small">delete</i></a>
+                  </div>
+                {% else %}
+                  <h6>{{build.title}}</h6>
+                {% endif %}
+                <p>{{username}}</p>
+                <p>{{build.date_added}}</p>
+              </div>
+              <h6> Notes: </h6>
+              <div class="build-description">
+                {{build.description}}
+              </div>
+            </div>
+            <div class="build-parts">
+              <div class="board tile">
+                <div class="tile-header">
+                  <h6>Board</h6>
+                  <i class="material-icons small">crop_16_9</i>
+                </div>
+                <div class="tile-container">
+                  <div class="tile-title">
+                    {{build.board.title}}
+                  </div>
+                  <div class="tile-body">
+                    {{build.board.description}}
+                  </div>
+                </div>
+              </div>
+              <div class="foil tile">
+                <div class="tile-header">
+                  <h6>Foil</h6>
+                  <i class="material-icons small">flight_takeoff</i>
+                </div>
+                <div class="tile-container">
+                  <div class="tile-title">
+                    {{build.foil.title}}
+                  </div>
+                  <div class="tile-body">
+                    {{build.foil.description}}
+                  </div>
+                </div>
+              </div>
+              <div class="motor tile">
+                <div class="tile-header">
+                  <h6>Motor</h6>
+                  <i class="material-icons small">adjust</i>
+                </div>
+                <div class="tile-container">
+                  <div class="tile-title">
+                    {{build.motor.title}}
+                  </div>
+                  <div class="tile-body">
+                    {{build.motor.description}}
+                  </div>
+                </div>
+              </div>
+              <div class="controller tile">
+                <div class="tile-header">
+                  <h6>Controller</h6>
+                  <i class="material-icons small">videogame_asset</i>
+                </div>
+                <div class="tile-container">
+                  <div class="tile-title">
+                    {{build.controller.title}}
+                  </div>
+                  <div class="tile-body">
+                    {{build.controller.description}}
+                  </div>
+                </div>
+              </div>
+              <div class="propeller tile">
+                <div class="tile-header">
+                  <h6>Propeller</h6>
+                  <i class="material-icons small">toys</i>
+                </div>
+                <div class="tile-container">
+                  <div class="tile-title">
+                    {{build.propeller.title}}
+                  </div>
+                  <div class="tile-body">
+                    {{build.propeller.description}}
+                  </div>
+                </div>
+              </div>
+              <div class="battery tile">
+                <div class="tile-header">
+                  <h6>Battery</h6>
+                  <i class="material-icons small">battery_charging_full</i>
+                </div>
+                <div class="tile-container">
+                  <div class="tile-title">
+                    {{build.battery.title}}
+                  </div>
+                  <div class="tile-body">
+                    {{build.battery.description}}
+                  </div>
+                </div>
+              </div>
+              <div class="remote tile">
+                <div class="tile-header">
+                  <h6>Remote</h6>
+                  <i class="material-icons small">settings_remote</i>
+                </div>
+                <div class="tile-container">
+                  <div class="tile-title">
+                    {{build.battery.title}}
+                  </div>
+                  <div class="tile-body">
+                    {{build.battery.description}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rides">
+            <h4>Rides</h4>
+            <ul class="collapsible">
+            {% for ride in rides %}
+              {% if ride.build == build %}
+                <p class="ride-date"> {{ride.pub_date}} </p>
+                <li>
+                  <div class="collapsible-header">
+                    {{ride.title}}
+                    <i class="material-icons">motorcycle</i>
+                  </div>
+                  <div class="collapsible-body">
+                    <div class="ride-tile">
+                      <div class="ride-title">
+                          <div class="ride-title-header">
+                            <h6>{{ride.title}}</h6>
+                            <a href="/graph/{{ride.id}}" class="btn btn-alt">View Ride</a>
+                          </div>
+                        <p>Rider: {{username}}</p>
+                        <p>Date: {{ride.ride_date}}</p>
+                      </div>
+                      <h6> Notes: </h6>
+                      <div class="ride-description">
+                        {{ride.description}}
+                      </div>
+                  </div>
+                </li>
+              {% endif %}
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="hide-on-small-only sidebar">
+     <ul class="table-of-contents">
+       {% for build in builds %}
+       <li><a href="#{{build.title}}">{{build.title}}</a></li>
+       {% endfor %}
+     </ul>
+   </div>
+  </div>
+{% endblock content %}
+{% block footer_scripts %}
+  <script type="text/javascript" src='../../static/plotter/js/base.js'></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.collapsible');
+      var instances = M.Collapsible.init(elems, {});
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.scrollspy');
+      var instances = M.ScrollSpy.init(elems, {throttle:300, scrollOffset:150});
+    });
+  </script>
+{% endblock footer_scripts %}

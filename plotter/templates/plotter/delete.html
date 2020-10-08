@@ -1,0 +1,17 @@
+{% extends "./base.html" %}
+{% block title %}Build{% endblock title %}
+{% block head_css %}
+  <link rel="stylesheet" href="../../static/plotter/css/delete.css"/>
+{% endblock head_css %}
+{% block content %}
+  <div class="container">
+    <div class="delete-tile m-elevation z-depth-3">
+      <h4> Are you sure you want to delete the build "{{build.title}}"? </h4>
+      <form method="POST">
+        {% csrf_token %}
+        <a href="/profile/{{build.author}}/" class="teal-effect teal lighten-2 btn"> Cancel </a>
+        <input type="submit" class="red lighten-2 btn" placeholder="Delete" name="confirm">
+      </form
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+	<style>
+		body,
+		html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background: #212121 !important;
+			font-family: "Helvetica Neue Light", "Helvetica Neue", ##COPYRIGHTED CHANGE BEFORE USE
+		  Helvetica, Arial, "Lucida Grande", sans-serif;
+		}
+
+		.container{
+			height: 100%;
+			display:flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.user_card {
+			width: 350px;
+			margin:auto;
+			margin-top:auto;
+			margin-bottom:auto;
+			background: rgba(44,44,44);
+			display: flex;
+			flex-flow:column;
+			justify-content: center;
+			align-items: center;
+			padding: 24px 24px;
+			border-radius: 5px;
+			color: rgba(255,255,255,0.87);
+		}
+
+		#form-title{
+			margin-bottom: 50px;
+		}
+
+		.user_card h3{
+			margin: 0.3em 0;
+		}
+
+		.form-container {
+			width: 100%;
+			display: flex;
+			flex-flow:column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.form-container input{
+			background-color: rgba(44,44,44) !important;
+			margin: 10px 0;
+			color:rgba(255,255,255,0.87);
+		}
+
+		.btn-container {
+			margin:10px;
+			width:100%;
+			display:flex;
+			justify-content: center;
+		}
+		.btn-container input{
+			margin-left: auto;
+			margin-right: auto;
+			width:30%;
+		}
+
+		#messages{
+			color: white;
+			padding: 10px;
+			margin-top: 10px;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="container">
+		<div class="user_card z-depth-3">
+			{% for message in messages %}
+				<p id="messages">{{message}}</p>
+			{% endfor %}
+			<h3 id="form-title">Login</h3>
+			<div class="form-container">
+				<form method="POST" action="/login/">
+					{% csrf_token %}
+					<label for="username">Username:</label>
+					<input type="text" name="username" placeholder="Username...">
+					<label for="password">Password:</label>
+					<input type="password" name="password" placeholder="Password...">
+	 				<div class="btn-container"><input class="btn teal-effect teal lighten-2" type="submit" value="Login"></div>
+				</form>
+				<div>
+					Don't have an account? <a href="{% url 'accounts:register' %}" class="ml-2">Sign Up</a>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

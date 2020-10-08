@@ -1,0 +1,177 @@
+{% extends "./base.html" %}
+{% block title %}Graph{% endblock title %}
+{% block head_css %}
+  <link rel="stylesheet" href="../../static/plotter/css/graph.css">
+{% endblock head_css %}
+{% block content %}
+  <div class="wrapper">
+    <div id="infoContainer">
+      <ul class="collapsible z-depth-3">
+        <li>
+          <div class="collapsible-header">
+            <h6>{{ride.title}}</h6>
+            <i class="material-icons">add</i>
+          </div>
+          <div class="collapsible-body">
+            <p>Rider: {{ride.rider}}</p>
+            <p>Date: {{ride.ride_date}}</p>
+            <p>Build: {{ride.build.title}}</p>
+            <p>Location: {{ride.location}}</p>
+            <p>Notes: {{ride}}</p>
+          </div>
+        </li>
+      </ul>
+      <div id="selectContainer" class="m-elevation z-depth-3">
+          <div id="boxes" class="section">
+          </div>
+      </div>
+    </div>
+    <div id="chartContainer" class="z-depth-3">
+      <div class="cover">
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+{% block footer_scripts %}
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script>
+  //put graph generation code here
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, {});
+  });
+  //On load function, get our data and do any setup required
+  $(document).ready(function() {
+    //sample data, real data will be loaded from database
+    var importedData = '{{mydata|safe}}';
+    var parsedData = JSON.parse(importedData)
+    var header = parsedData.header
+
+    var data = parsedData.data
+    var timeStamp = data[0][0]
+    var min = [Infinity,Infinity,Infinity,Infinity,Infinity,Infinity,Infinity,Infinity,Infinity];
+
+    var newData = [];
+    var axisY = [];
+    for(var i in header) {
+        if (i == 0){
+          continue;
+        }
+        newData.push({
+            type:"line",
+            name: header[i],
+            showInLegend: true,
+            markerSize: 0,
+            axisYIndex: parseInt(i-1),
+            dataPoints: []
+        })
+        axisY.push({
+            minimum: 0,
+            tickThickness: 0,
+            tickLength: 0,
+            lineThickness:0,
+            margin:0,
+            labelFormatter: function(e) {
+              return "";
+            }
+        })
+      addCheckbox(header[i])
+    }
+
+    function addCheckbox(name) {
+       var container = $('#boxes');
+       var inputs = container.find('input');
+       var id = inputs.length+1;
+
+       var div = $('<div />', { class: 'col s3'})
+       var label = $('<label />')
+       $('<input />', { type: 'checkbox', id: 'cb'+id, value: name, class:'checkboxes'}).appendTo(label)
+       $('<span />', { text: name }).appendTo(label)
+       label.appendTo(div)
+       div.appendTo(container)
+    }
+
+    // newData[k-1] matches k key:value pair of data[j]
+    for(var j in data) {
+      if(j < (data.length-20)){
+        for(var k in data[j]){
+          if (k > 0){
+              var newTime = (data[j][0] - timeStamp)/1000
+              if (min[k] > parseFloat(data[j][k])){
+                min[k] = parseFloat(data[j][k]);
+              }
+              newData[k-1].dataPoints.push({x:newTime, y:parseFloat(data[j][k])})
+          }
+        }
+      }
+    }
+
+    for (var l in axisY){
+      if(l!=0){
+        axisY[l-1].minimum = min[l]
+      }
+    }
+
+    // FUNCTIONS
+    // Generates chart
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+        zoomEnabled: true,
+        panEnabled: true,
+        theme:"dark2",
+        backgroundColor: "#2c2c2c",
+        borderRadius: "5px",
+        axisY: axisY,
+        toolTip: {
+            shared: true
+        },
+        legend: {
+            cursor: "pointer",
+            verticalAlign: "left",
+            horizontalAlign: "center",
+            dockInsidePlotArea: false
+        },
+       data: newData
+    });
+
+chart.render();
+
+
+    function displayData(selected){
+      if (selected.length > 0){
+          for (var i=1;i<header.length;i++){
+              if (!selected.includes(header[i])){ //if checked in checkbox
+                  chart.options.data[i-1].visible = false;
+                  chart.options.data[i-1].toolTipContent = null;
+              } else {
+                  chart.options.data[i-1].visible = true;
+                  chart.options.data[i-1].toolTipContent = "<span style='\"'color: {color};'\"'>{name}</span>: <strong>{y}</strong>";
+              }
+          }
+      }
+      console.log('display called')
+      chart.render();
+    }
+
+    //displayData([]);
+     // Determines which data has been selected for viewing -> () => array
+    $(".checkboxes").click(function() {
+      var selectedData = []
+      $(".checkboxes").each(function() {
+        if($(this).is(":checked")){
+          selectedData.push($(this).val());
+        }
+      })
+      displayData(selectedData);
+      console.log(selectedData);
+    })
+
+    $("#selectAll").click(function() {
+      $(".checkboxes").each(function() {
+        $(this).prop('checked', true)
+      })
+    })
+
+  });
+  </script>
+{% endblock footer_scripts %}

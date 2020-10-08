@@ -1,0 +1,113 @@
+{% extends "./base.html" %}
+{% block title %}Build{% endblock title %}
+{% block head_css %}
+  <link rel="stylesheet" href="../../static/plotter/css/build.css"/>
+{% endblock head_css %}
+{% block content %}
+  <div class="container">
+    <div class="section feed-header"><h2 class="left-align">Add a Build</h2></div>
+    <div class='flex-col m-elevation z-depth-3'>
+      <div class="section">
+          <form method="POST" action="" class="build-form left-align" novalidate>
+              {% csrf_token %}
+              {% for message in messages %}
+                <h4 id="messages" class="center-align teal-text text-lighten-2">{{message}}</h4>
+              {% endfor %}
+              <div class="build-form">
+                  {{ buildForm }}
+                <ul class="collapsible">
+                  <li>
+                    <div class="collapsible-header board">
+                      Board
+                      <i class="material-icons">crop_16_9</i>
+                    </div>
+                    <div class="collapsible-body">
+                      {% csrf_token %}
+                      {{ boardForm }}
+                    </div>
+                  </li>
+                  <li>
+                    <div class="collapsible-header foil">
+                      Hydrofoil
+                      <i class="material-icons">flight_takeoff</i>
+                    </div>
+                    <div class="collapsible-body">
+                      {% csrf_token %}
+                      {{ foilForm }}
+                    </div>
+                  </li>
+                  <li>
+                    <div class="collapsible-header motor">
+                      Motor
+                      <i class="material-icons">adjust</i>
+                    </div>
+                    <div class="collapsible-body">
+                      {% csrf_token %}
+                      {{ motorForm }}
+                    </div>
+                  </li>
+                  <li>
+                    <div class="collapsible-header controller">
+                      Motor Controller
+                      <i class="material-icons">videogame_asset</i>
+                    </div>
+                    <div class="collapsible-body">
+                      {% csrf_token %}
+                      {{ controllerForm }}
+                    </div>
+                  </li>
+                  <li>
+                    <div class="collapsible-header propeller">
+                      Propeller
+                      <i class="material-icons">toys</i>
+                    </div>
+                    <div class="collapsible-body">
+                      {% csrf_token %}
+                      {{ propellerForm }}
+                    </div>
+                  </li>
+                  <li>
+                    <div class="collapsible-header battery">
+                      Battery
+                      <i class="material-icons">battery_charging_full</i>
+                    </div>
+                    <div class="collapsible-body">
+                      {% csrf_token %}
+                      {{ batteryForm }}
+                    </div>
+                  </li>
+                  <li>
+                    <div class="collapsible-header remote">
+                      Remote
+                      <i class="material-icons">settings_remote</i>
+                    </div>
+                    <div class="collapsible-body">
+                      {% csrf_token %}
+                      {{ remoteForm }}
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="section"><button class="btn teal-effect teal lighten-2" type="submit">Save<i class="material-icons right">input</i></button></div>
+              {% if not user.is_authenticated %}
+              <p> Your data will not be saved. Please log-in to save your ride. </p>
+              {% endif %}
+          </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+{% block footer_scripts %}
+  <script type="text/javascript" src='../../static/plotter/js/base.js'></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.collapsible');
+      var instances = M.Collapsible.init(elems, {});
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems, {});
+    });
+    addInputClasses();
+  </script>
+{% endblock footer_scripts %}

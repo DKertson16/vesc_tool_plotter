@@ -1,0 +1,114 @@
+textarea {
+  height:92px !important;
+}
+
+.container {
+  display:flex;
+  flex-flow:column;
+  justify-content: center;
+  align-content: center;
+}
+
+.flex-col {
+  align-self:center;
+  flex: 1;
+  margin-top:24px;
+  border-radius: 5px;
+  padding: 24px 48px;
+  width: 70%;
+}
+
+.build-form label{
+  color: rgba(255,255,255,0.87);
+  font-size: 1em;
+  /* color: #46dbac; */
+}
+
+.build-form input{
+  color: rgba(255,255,255,0.87);
+}
+
+.collapsible {
+  border:none;
+  box-shadow:none;
+}
+
+.collapsible .collapsible-header{
+  /* background-color: transparent; */
+  justify-content: space-between;
+}
+
+.collapsible .collapsible-header:hover{
+  background-color: rgba(0,0,0,0.1);
+}
+.collapsible .collapsible-body{
+  background-color: transparent;
+  color: rgba(255,255,255,0.87);
+  padding: 2rem 24px;
+}
+
+.collapsible .collapsible-body input{
+  color: rgba(255,255,255,0.87);
+}
+
+.collapsible .collapsible-body label{
+  color: rgba(255,255,255,0.87);
+  /* color: #46dbac; */
+}
+
+.dropdown-content {
+  background-color: rgba(66,66,66);
+}
+
+.dropdown-content li span{
+  color: rgba(255,255,255,0.87);
+}
+.dropdown-content li:focus {
+  background-color: rgba(66,66,66, 0.1);
+}
+
+.select-dropdown.dropdown-content li.selected {
+  background-color: rgba(66,66,66);
+}
+
+.board {
+  color: rgba(255,255,255,0.87);
+  background-color:#3F656F;
+}
+
+.foil {
+  color: rgba(255,255,255,0.87);
+  background-color: #7FA8AF;
+}
+
+.motor {
+  color: rgba(255,255,255,0.87);
+  background-color: #71AA8F;
+}
+
+.controller {
+  color: rgba(255,255,255,0.87);
+  background-color: #ABB4EF;
+}
+
+.propeller {
+  color: rgba(255,255,255,0.87);
+  background-color: #a9d18c;
+}
+
+.battery {
+  color: rgba(255,255,255,0.87);
+  background-color: #77a5d4;
+}
+
+.remote {
+  border-bottom: 1px solid #666BAF !important;666BAF
+  color: rgba(255,255,255,0.87);
+  background-color: #666BAF;
+}
+
+.collapsible .collapsible-header{
+  /* background-color: transparent; */
+  justify-content: space-between;
+  border-bottom: 1px solid lightgrey;
+}

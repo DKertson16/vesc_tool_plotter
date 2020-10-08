@@ -1,0 +1,67 @@
+{% extends "./base.html" %}
+{% block title %}Upload{% endblock title %}
+{% block head_css %}
+  <link rel="stylesheet" href="../../static/plotter/css/upload.css">
+{% endblock head_css %}
+{% block content %}
+  <div class="container">
+    <div class="section feed-header"><h2 class="left-align">Upload Ride Data</h2></div>
+    <div >
+      <br>
+    </div>
+    <div class="flex-row">
+      <div class="flex-col-left">
+        <h4 class="left-align">Data Accepted</h4>
+          <div class="disabled">
+            <p> Extraneous columns are allowed but will not be saved.</P>
+            {% if accepted_data_set %}
+              <ul>
+              {% for item in accepted_data_set %}
+                <div><li><p>{{ item }}</p></li></div>
+              {% endfor %}
+              </ul>
+            {% else %}
+              <p>Data cannot be displayed at this time.</p>
+            {% endif %}
+          </div>
+      </div>
+      <div class='flex-col-right m-elevation z-depth-3'>
+        <div class="section"><h4 class="center-align">Enter Ride Details</h4></div>
+        <div class="section">
+            <form method="POST" action="" enctype="multipart/form-data" class="ride left-align" novalidate>
+                {% csrf_token %}
+                {% for message in messages %}
+                  <p id="messages" class="teal-text text-lighten-2">{{message}}</p>
+                {% endfor %}
+                <div class="form-color" id="ride-form">
+                  {% csrf_token %}
+                  {{ rideForm }}
+                </div>
+                <input class="file-upload" type="file" name="file" accept=".csv"/>
+                <div class="section"><button class="btn teal-effect teal lighten-2" type="submit">Graph<i class="material-icons right">multiline_chart</i></button></div>
+                {% if not user.is_authenticated %}
+                <p> Your data will not be saved. Please log-in to save your ride. </p>
+                {% endif %}
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+{% block footer_scripts %}
+  <script type="text/javascript" src='../../static/plotter/js/base.js'></script>
+  <script>
+    addInputClasses();
+    //$('#id_ride_date').prop('class', 'datepicker');
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.datepicker');
+      var instances = M.Datepicker.init(elems, {});
+    });
+  </script>
+{% endblock footer_scripts %}
+
+<!-- <select class="form-control" id="make">
+  {% for build in builds %}
+    <option value='{{build.id}}'>{{ build.title }}</option>
+  {% endfor %}
+</select> -->

@@ -1,0 +1,16 @@
+{% extends "./base.html" %}
+{% block title %}Build{% endblock title %}
+{% block head_css %}
+  <link rel="stylesheet" href="../../static/plotter/css/index.css"/>
+{% endblock head_css %}
+{% block content %}
+  <div class="container">
+    <div class="section"><h1 class="center-align">VESC Tool Plotter</h1></div>
+    <div class="button-container m-elevation z-depth-3">
+        <a href="/upload" class="btn btn-alt">Upload Data</a>
+        <a href="/build" class="btn btn-alt">Add a Build</a>
+        <a href="/profile/{{ user.username }}/" class="btn btn-alt">Profile</a>
+        <a href="/logout" class="btn btn-alt">Logout</a>
+    </div>
+  </div>
+{% endblock content %}
