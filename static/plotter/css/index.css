@@ -1,0 +1,15 @@
+.button-container{
+  width: 30%;
+  margin-right: auto;
+  margin-left: auto;
+  padding:24px;
+  display:flex;
+  flex-flow:column;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.button-container a{
+  width: 200px;
+  margin:15px 0;
+}

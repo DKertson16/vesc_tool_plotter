@@ -1,0 +1,73 @@
+.wrapper{
+  margin-left:auto;
+  margin-right:auto;
+  display: flex;
+  flex-flow:row;
+  align-items: center;
+  justify-content:center;
+  width: 90vw;
+  margin-top:50px;
+  height:620px;
+}
+
+#infoContainer {
+  height:100%;
+  flex: 2 1 0;
+  display:flex;
+  flex-flow:column;
+}
+
+#selectContainer{
+  flex:1;
+  padding: 24px;
+  display:flex;
+  flex-flow:column;
+  justify-content: center;
+}
+
+#chartContainer {
+  flex: 7 1 0;
+  height:100%;
+  margin-left:15px;
+  z-index:10000;
+}
+
+#chartContainer .cover{
+  height:15px;
+  width:60px;
+  background-color: rgba(44,44,44);
+  margin-top:auto;
+  position: relative;
+  top:605px;
+}
+
+#chartContainer a{
+  display:none;
+}
+
+.collapsible {
+  border:none;
+  box-shadow:none;
+  margin-top:0;
+  margin-bottom:15px;
+}
+
+.collapsible .collapsible-header{
+  background-color: rgba(44,44,44);
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #46dbac;
+}
+
+.collapsible .collapsible-header i{
+}
+
+.collapsible .collapsible-header:hover{
+  background-color: rgba(0,0,0,0.1);
+}
+.collapsible .collapsible-body{
+  background-color: rgba(44,44,44);
+  color: rgba(255,255,255,0.6);
+  padding: 12px 24px;
+  border:none;
+}

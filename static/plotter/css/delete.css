@@ -1,0 +1,16 @@
+.delete-tile{
+  height:auto;
+  width:70%;
+  padding:24px;
+  margin-top:50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.delete-tile h4{
+  margin: 0.7em 0;
+}
+
+.delete-tile a{
+  margin-right:20px;
+}

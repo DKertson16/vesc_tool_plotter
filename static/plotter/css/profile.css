@@ -1,0 +1,390 @@
+.container {
+  width:80%;
+  max-width:1920px;
+}
+
+.profile {
+  display:flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.prof-container{
+  width:20%;
+  margin-top: 128px;
+}
+
+.feed-header{
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+  border-bottom: 1px solid #46dbac;
+}
+
+.feed-header h1{
+  margin: 50px 0 25px 0;
+}
+
+.prof-info {
+  width:95%;
+  min-width:150px;
+  display:flex;
+  flex-flow:column;
+  border-radius: 5px;
+  justify-content: left;
+  padding:10px 30px 20px 30px;
+  color: rgba(255,255,255,0.6);
+  /* border-right: 1px solid rgba(70,219,172,0.4); */
+}
+
+.prof-header{
+  flex:1;
+  display:flex;
+  border-bottom: 1px solid rgba(255,255,255,0.6);
+}
+
+.prof-info ul li{
+  list-style-type: circle;
+  margin-left:25px;
+  font-size: 1.2em
+}
+
+.prof-info h4{
+  font-weight:700px;
+}
+
+.prof-info .btn{
+  margin-top:24px;
+  width:90%;
+}
+
+.sidebar{
+  top:128px;
+  position:sticky;
+  margin-top: 128px;
+  width:20%;
+  height:100%;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.table-of-contents a{
+  font-size: 1.1em;
+}
+
+.table-of-contents a.active{
+  border-left: 2px solid #46dbac;
+}
+
+.table-of-contents a:hover{
+  border-left: 1px solid #009688;
+}
+
+.build-feed {
+  width: 60%;
+  display: flex;
+  flex-flow:column;
+  min-width:600px;
+}
+
+.feed-body{
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+.build {
+  flex: 1;
+  border-radius: 5px;
+  padding:24px;
+  display: flex;
+  flex-flow: column;
+  margin-bottom:15px;
+}
+
+.build-container{
+  margin-bottom:100px;
+}
+
+.build-header{
+  display:flex;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255,255,255,0.87);
+  margin-bottom: 24px;
+}
+
+.build-header h2{
+  margin-top: 24px;
+}
+
+.build-parts{
+  display: flex;
+  flex-flow:column;
+}
+
+.tile {
+  flex:1;
+  height: 120px;
+  min-width:31%;
+  color: white;
+  border-radius: 5px;
+  padding:10px;
+  display:flex;
+  color: black;
+}
+
+.tile-container {
+  flex:1;
+  border-left: 1px solid black;
+  display:flex;
+  flex-flow:column;
+  padding-left: 10px;
+}
+
+.build-tile {
+  flex: 1;
+  height: 120px;
+  width: auto;
+  min-width: 33%;
+  color: white;
+  border-radius: 5px;
+  display:flex;
+  flex-flow: column;
+}
+
+.build-title{
+  flex: 1;
+  border-bottom: 1px solid rgba(255,255,255,0.87);
+}
+
+.build-title p{
+  margin: 5px 0;
+  color: rgba(255,255,255,0.6);
+}
+
+.build-title h6{
+  margin:0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.build-title a{
+  background: transparent;
+  box-shadow:none;
+  color: rgba(255,255,255,0.87);
+}
+
+.build-title a:hover{
+  background: rgba(0,0,0,0.2);
+}
+
+.build-title-header {
+  display: flex;
+  align-items: right;
+}
+
+.build-title-header .edit{
+  margin-left: auto;
+}
+
+
+.build-description{
+  flex:1;
+  margin-bottom: 10px;
+}
+
+.tile-header{
+  align-self: flex-start;
+  min-width:76px;
+  display:flex;
+  flex-flow:column;
+  justify-content: center;
+  align-items: center;
+  margin-right:5px;
+  height:100%;
+}
+
+.tile-header h6{
+  margin:0;
+}
+
+.tile-header a{
+  margin-top:auto;
+  background: transparent;
+  box-shadow:none;
+  color: black;
+}
+
+.tile-header a:hover{
+  background: rgba(0,0,0,0.2);
+}
+
+.tile-title{
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.tile-body{
+}
+
+.rides {
+}
+
+.collapsible {
+  border:none;
+  box-shadow:none;
+}
+
+.ride-date{
+  margin-left:10px;
+}
+
+.collapsible li{
+  flex:1;
+  margin-left: auto;
+  width:90%;
+}
+
+.collapsible .active{
+  background-color: rgba(0,0,0,0.1);
+}
+
+.collapsible .active .collapsible-body {
+  background-color: #212121;
+}
+
+.collapsible .collapsible-header{
+  flex:1;
+  background-color: transparent;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.87);
+  border-left: 1px solid rgba(255,255,255,0.87);
+  color: rgba(255,255,255,0.87);
+}
+
+.collapsible .collapsible-header:hover{
+  background-color: rgba(0,0,0,0.1);
+}
+.collapsible .collapsible-body{
+  background-color: transparent;
+  color: rgba(255,255,255,0.87);
+  padding: 24px;
+}
+
+.collapsible .collapsible-body input{
+  color: rgba(255,255,255,0.87);
+}
+
+.collapsible .collapsible-body label{
+  color: rgba(255,255,255,0.87);
+}
+
+.board {
+  background-color: #3F656F;
+  margin-bottom: 15px;
+}
+
+.foil {
+  background-color: #7FA8AF;
+  margin-bottom: 15px;
+}
+
+.motor {
+  background-color: #71AA8F;
+  margin-bottom: 15px;
+}
+
+.controller {
+  background-color: #ABB4EF;
+  margin-bottom: 15px;
+}
+
+.propeller {
+  background-color: #a9d18c;
+  margin-bottom: 15px;
+}
+
+.battery {
+  background-color: #77a5d4;
+  margin-bottom: 15px;
+}
+
+.remote {
+  background-color: #666BAF;
+  margin-bottom: none;
+}
+
+.ride-tile {
+  flex: 1;
+  width: auto;
+  min-width: 33%;
+  color: white;
+  border-radius: 5px;
+  display:flex;
+  flex-flow: column;
+}
+
+.ride-title{
+  flex: 1;
+}
+
+.ride-title p{
+  margin: 5px 0;
+  color: rgba(255,255,255,0.6);
+}
+
+.ride-title h6{
+  margin:0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ride-title a{
+  background: transparent;
+  box-shadow:none;
+  color: rgba(255,255,255,0.87);
+}
+
+.ride-title a:hover{
+  background: rgba(0,0,0,0.2);
+}
+
+.ride-title-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: right;
+}
+
+.ride-description{
+  flex:1;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 800px){
+  .profile{
+    flex-flow:column;
+    justify-content: center;
+  }
+
+  .prof-info{
+    width:100%;
+    margin-bottom: 15px;
+  }
+
+  .build-feed{
+    width: 100%;
+    min-width:300px;
+  }
+
+  .build-parts{
+    flex-flow:column;
+    flex-wrap: nowrap;
+  }
+
+  .tile{
+    width: 100%;
+  }
+}
